@@ -2,5 +2,5 @@
 ag-*
 *.sqlite3
 *.png
-ipynb_checkpoints
+.ipynb_checkpoints
 *.swp
