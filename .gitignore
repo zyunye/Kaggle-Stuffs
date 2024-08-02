@@ -6,3 +6,4 @@ ag-*
 *.swp
 AutogluonModels
 __pycache__
+*.zip
