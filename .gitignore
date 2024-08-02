@@ -4,3 +4,5 @@ ag-*
 *.png
 .ipynb_checkpoints
 *.swp
+AutogluonModels
+__pycache__
