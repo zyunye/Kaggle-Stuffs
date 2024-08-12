@@ -8,3 +8,4 @@ AutogluonModels
 __pycache__
 *.zip
 checkpoints/
+.vscode
