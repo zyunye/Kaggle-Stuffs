@@ -47,6 +47,24 @@ def fix_that_one_mushroom_in_test(test_df):
     test_df.loc[3755132, "cap-diameter"] = test_df.loc[3755132, "cap-diameter"] / 10
     return test_df
 
+def impute_cont_cols(df, cont_cols, impute_method="median"):
+    # There are some extremely rare rows which contain a nan value in one of their continuous features
+    # This method is a helper to impute with certain methods
+    feats_with_nans = df[cont_cols].isna().sum()
+    feats_with_nans = feats_with_nans[feats_with_nans > 0].index
+    
+    for feat in feats_with_nans:
+        impute_val = None
+        match impute_method:
+            case "mean":
+                impute_val = df[feat].mean()
+            case "median":
+                impute_val = df[feat].median()
+            case "mode":
+                impute_val = df[feat].mode()
+
+        df.loc[df[feat].isna(), feat] = impute_val
+
 if __name__ == "__main__":
     train_df = pd.read_csv("../data/train.csv", index_col="id")
     orig_df = pd.read_csv("../data/orig.csv", index_col="id")
